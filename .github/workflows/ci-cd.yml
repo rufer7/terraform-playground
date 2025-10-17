@@ -1,0 +1,56 @@
+name: CI/CD
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  # AZURE_CORE_OUTPUT: none
+  TERRAFORM_VERSION: "1.13.3"
+  TERRAFORM_ROOT_DIRECTORY: "./iac"
+
+jobs:
+  iac_plan:
+    name: IaC (Terraform) Plan
+    runs-on: ubuntu-latest
+    environment: dev-iac
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - name: Terraform init
+        run: terraform -chdir=${{ env.TERRAFORM_ROOT_DIRECTORY }} init --backend-config=backend/dev.backend.tfvars --backend-config='client_id=${{ secrets.AZURE_CLIENT_ID }}' --backend-config='subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' --backend-config='tenant_id=${{ secrets.AZURE_TENANT_ID }}'
+      - name: Terraform plan
+        run: terraform -chdir=${{ env.TERRAFORM_ROOT_DIRECTORY }} plan --var-file=vars/dev.app.tfvars --var='client_id=${{ secrets.AZURE_CLIENT_ID }}' --var='subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' --var='tenant_id=${{ secrets.AZURE_TENANT_ID }}' -replace azuread_application_password.aadapppwd --state=dev.app.tfstate -out=tfplan
+
+  iac_apply:
+    name: IaC (Terraform) Apply
+    runs-on: ubuntu-latest
+    environment: dev-iac
+    needs: iac_plan
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+      - name: Terraform init
+        run: terraform -chdir=${{ env.TERRAFORM_ROOT_DIRECTORY }} init --backend-config=backend/dev.backend.tfvars --backend-config='client_id=${{ secrets.AZURE_CLIENT_ID }}' --backend-config='subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' --backend-config='tenant_id=${{ secrets.AZURE_TENANT_ID }}'
+      - name: Terraform apply
+        run: terraform -chdir=${{ env.TERRAFORM_ROOT_DIRECTORY }} apply --var-file=vars/dev.app.tfvars --var='client_id=${{ secrets.AZURE_CLIENT_ID }}' --var='subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}' --var='tenant_id=${{ secrets.AZURE_TENANT_ID }}' -replace azuread_application_password.aadapppwd --state=dev.app.tfstate -auto-approve
