@@ -29,8 +29,8 @@ Repository for playing around with Terraform and for testing purposes
 
 > [!IMPORTANT]
 > To generate deployment credentials and to configure the secrets for the GitHub actions workflow, see [here](https://learn.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=openid%2Caspnetcore&WT.mc_id=MVP_344197#set-up-a-github-actions-workflow-manually).
-> There are currently two GitHub environments set up for this repository: `dev` and `dev-iac`.
-> For both of them a separate federated credential is set up in the Entra app which got created while generating deployment credentials.
+> There is currently one GitHub environment set up for this repository: `dev-iac`.
+> For this environment, a separate federated credential is set up in the Entra app which got created while generating deployment credentials.
 > Furthermore the service principal of the Entra app is a member of the Entra group `kv-secret-rotation-sample-contributor-iac` and the following Microsoft Graph application permissions got added
 >
 > - `Application.ReadWrite.All`
