@@ -37,7 +37,7 @@ Repository for playing around with Terraform and for testing purposes
 > - `Domain.Read.All`
 > - `Group.ReadWrite.All`
 >
-> Finally, the service principal was assigned the `Owner` role for the resource group.
+> Finally, the service principal was assigned the `Reader` role for the resource group.
 
 > [!NOTE]
 > The application resources are created via GitHub actions workflow. The following steps are only required, if you want to create the resources manually.
