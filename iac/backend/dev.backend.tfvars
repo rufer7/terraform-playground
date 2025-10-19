@@ -1,0 +1,6 @@
+tenant_id           = "00000000-0000-0000-0000-000000000000"
+subscription_id     = "00000000-0000-0000-0000-000000000000"
+resource_group_name = "tf-playground-rg-iac"
+container_name      = "tfstate"
+key                 = "tf-playground.tfstate"
+use_azuread_auth    = "true"
