@@ -37,7 +37,7 @@ Repository for playing around with Terraform and for testing purposes
 > - `Domain.Read.All`
 > - `Group.ReadWrite.All`
 >
-> Finally, the service principal was assigned the `Reader` role at the subscription level.
+> Finally, the service principal was assigned the `Contributor` role at the subscription level and the `Owner` role for the resource group of the application.
 
 > [!NOTE]
 > The application resources are created via GitHub actions workflow. The following steps are only required, if you want to create the resources manually.
