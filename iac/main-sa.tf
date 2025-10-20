@@ -1,4 +1,4 @@
-resource "azurerm_storage_account" "sa-attachments" {
+resource "azurerm_storage_account" "sa" {
   name                            = replace(local.name_template_short, "<service>", "sa")
   resource_group_name             = azurerm_resource_group.rg.name
   location                        = var.default_location
