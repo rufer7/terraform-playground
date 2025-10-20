@@ -17,7 +17,7 @@ resource "azurerm_storage_account" "sa" {
 # or role 'Defender for Storage Scanner Operator' at storage account level
 # to the executing user / service principal
 resource "azapi_resource_action" "enable-defender-for-sa" {
-  type        = "Microsoft.Security/defenderForStorageSettings@2022-12-01-preview"
+  type        = "Microsoft.Security/defenderForStorageSettings@2025-07-01-preview"
   resource_id = "${azurerm_storage_account.sa.id}/providers/Microsoft.Security/defenderForStorageSettings/current"
   method      = "PUT"
 
@@ -26,16 +26,16 @@ resource "azapi_resource_action" "enable-defender-for-sa" {
       isEnabled = true
       malwareScanning = {
         onUpload = {
-          isEnabled              = true
-          capGBPerMonth          = 2
-          blobScanResultsOptions = "BlobIndexTags"
+          isEnabled     = true
+          capGBPerMonth = 1
         }
+        blobScanResultsOptions = "BlobIndexTags"
+        automatedResponse      = "BlobSoftDelete"
       }
       sensitiveDataDiscovery = {
         isEnabled = true
       }
       overrideSubscriptionLevelSettings = true
-      automatedResponse                 = "BlobSoftDelete"
     }
   }
 }
