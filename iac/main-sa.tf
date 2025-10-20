@@ -23,7 +23,7 @@ resource "azapi_resource_action" "enable-defender-for-sa" {
       malwareScanning = {
         onUpload = {
           isEnabled              = true
-          capGBPerMonth          = 1
+          capGBPerMonth          = 2
           blobScanResultsOptions = "BlobIndexTags"
         }
       }
