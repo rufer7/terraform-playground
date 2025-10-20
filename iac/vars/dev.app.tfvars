@@ -6,3 +6,4 @@ default_location      = "switzerlandnorth"
 stage                 = "dev"
 app_worker_count      = 1
 app_sku_name          = "F1"
+custom_domain_name    = "test.floorball.online"
