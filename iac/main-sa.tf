@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "sa" {
-  name                            = replace(local.name_template_short, "<service>", "sa")
+  name                            = replace(local.name_template_short, "<service>", "satest")
   resource_group_name             = azurerm_resource_group.rg.name
   location                        = var.default_location
   account_tier                    = "Standard"
