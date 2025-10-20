@@ -40,7 +40,7 @@ Repository for playing around with Terraform and for testing purposes
 > Finally, the service principal was assigned ...
 >
 > - ... the `Contributor` role at the subscription level
-> - ... the `Owner` role for the resource group of the application.
+> - ... the `Owner` role for the resource group of the application
 
 > [!NOTE]
 > The application resources are created via GitHub actions workflow. The following steps are only required, if you want to create the resources manually.
