@@ -12,6 +12,10 @@ resource "azurerm_storage_account" "sa" {
 }
 
 # Enable and configure Defender for Storage at the storage account level
+# IMPORTANT:
+# Assign role 'Owner' at resource group level 
+# or role 'Defender for Storage Scanner Operator' at storage account level
+# to the executing user / service principal
 resource "azapi_resource_action" "enable-defender-for-sa" {
   type        = "Microsoft.Security/defenderForStorageSettings@2022-12-01-preview"
   resource_id = "${azurerm_storage_account.sa.id}/providers/Microsoft.Security/defenderForStorageSettings/current"
