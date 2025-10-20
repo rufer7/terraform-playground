@@ -5,6 +5,10 @@
 
 Repository for playing around with Terraform and for testing purposes
 
+## Related blog posts
+
+- :memo: [[HOWTO] Enable and configure Defender for Storage at the storage account level by using Terraform](https://blog.rufer.be/2025/10/20/howto-enable-and-configure-defender-for-storage-at-the-storage-account-level-by-using-terraform/)
+
 ## Getting started
 
 ### Prerequisites
