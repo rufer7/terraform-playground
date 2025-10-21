@@ -5,5 +5,5 @@ resource_prefix_short = "tfplayground"
 default_location      = "switzerlandnorth"
 stage                 = "dev"
 app_worker_count      = 1
-app_sku_name          = "F1"
+app_sku_name          = "B1"
 custom_domain_name    = "test.floorball.online"
