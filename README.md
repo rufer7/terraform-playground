@@ -8,6 +8,7 @@ Repository for playing around with Terraform and for testing purposes
 ## Related blog posts
 
 - :memo: [[HOWTO] Enable and configure Defender for Storage at the storage account level by using Terraform](https://blog.rufer.be/2025/10/20/howto-enable-and-configure-defender-for-storage-at-the-storage-account-level-by-using-terraform/)
+- :memo: [[HOWTO] Configure a custom domain and App Service Managed Certificate with Terraform](https://blog.rufer.be/2025/10/21/howto-configure-a-custom-domain-and-app-service-managed-certificate-with-terraform/)
 
 ## Getting started
 
