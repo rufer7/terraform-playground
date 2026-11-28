@@ -10,7 +10,7 @@ permissions:
 
 env:
   # AZURE_CORE_OUTPUT: none
-  TERRAFORM_VERSION: "1.13.3"
+  TERRAFORM_VERSION: "1.17.2"
   TERRAFORM_ROOT_DIRECTORY: "./iac"
 
 jobs:
